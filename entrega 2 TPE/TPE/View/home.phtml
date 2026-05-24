@@ -1,0 +1,60 @@
+<?php
+include_once "./View/CategoriaView.php";
+include_once "./View/HomeView.php";
+
+$view = new HomeView();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mauricio</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>Style/global.css">
+</head>
+<body>
+    <header>
+        <h1>Reseñitas</h1>
+        <h2>Aca recomendamos peliculas gratis, series gratis, documentales gratis online</h2>
+        <?php 
+            if (isset($req->user)) {
+                echo " Usuario: " . $req->user->nombre;
+                echo " (" . $req->user->rol . ") |";
+            }
+        ?>
+        <a href="<?= BASE_URL ?>login/signOut">Cerrar sesion</a>
+    </header>
+<main>
+    <section>
+        <ul>
+            <?php foreach($categorias as $categoria): ?>
+                <li>
+                    <a href="<?= BASE_URL ?>categorias/verCategoria/<?= $categoria->id ?>">
+                        <?= $categoria->nombre ?>
+                    </a>
+                    
+                    <?php 
+                
+
+                $view->showDelete($categoria, $req);
+            ?>
+            </li>
+
+            <?php endforeach; 
+            ?>
+        </ul>
+        <?php 
+            $view->showError();
+
+            $view->showAdd($req);
+            $view->showUpdate($categorias, $req);
+        ?>
+    </section>
+</main>
+</body>
+</html>
+
+
+
+ 

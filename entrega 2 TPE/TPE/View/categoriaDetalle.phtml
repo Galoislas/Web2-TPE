@@ -1,0 +1,48 @@
+<?php 
+    include_once "PeliculasView.php";
+    $view = new PeliculasView();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>Style/global.css">
+</head>
+<body>
+<header>
+    <h1>Reseñitas</h1>
+    <h2>Aca recomendamos peliculas gratis, series gratis, documentales gratis online</h2>
+    <?php 
+        if (isset($req->user)) {
+            echo " Usuario: " . $req->user->nombre;
+            echo " (" . $req->user->rol . ") |";
+        }
+    ?>
+    <a href="<?= BASE_URL ?>login/signOut">Cerrar sesion</a>
+</header>
+<main>
+    <p> Volver al inicio: <a href="<?= BASE_URL ?>home">Home</a></p>    
+
+    <h3><?= $categoria->nombre; ?></h3>
+    <h4><?= $categoria->descripcion; ?></h4>
+    <ul>
+        <?php foreach($peliculas as $pelicula): ?>
+            <li>
+                <a href="<?= BASE_URL ?>peliculas/verPelicula/<?= $pelicula->id ?>"><?= $pelicula->nombre ?></a>
+                <?php $view->showDelete($pelicula, $categoria->id, $req); ?>
+            </li>
+        <?php endforeach; ?>
+
+        <?php
+            $view->showError(); 
+
+            $view->showAdd($categoria, $req);
+            $view->showUpdate($peliculas, $categoria, $req);
+        ?>
+    </ul>
+</main>
+</body>
+</html>

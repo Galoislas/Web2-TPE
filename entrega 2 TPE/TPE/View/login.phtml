@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>Style/global.css">
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="POST" action="<?= BASE_URL ?>login/verifyUser/">
+        <label>Nombre:</label><br>
+        <input type="text" name="nombre" placeholder="Ingrese nombre de usuario"><br>
+
+        <label>Contraseña:</label><br>
+        <input type="password" name="contraseña" placeholder="Ingrese contraseña"><br>
+
+        <button type="submit">Acceder</button>
+    </form>
+    <div>
+        <P>¿No tienes una cuenta?</p>
+        <button type="submit"><a href="<?= BASE_URL ?>login/newAccount/">Registrarse</a></button>
+    </div>
+</body>
+</html>

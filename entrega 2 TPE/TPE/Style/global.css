@@ -1,0 +1,23 @@
+
+form{
+    display: inline-block;
+    text-align: center;
+    margin-left: 10px;
+}
+form input{
+    width: 100%;
+}
+
+form h4{
+    border-bottom: black 1px solid;
+}
+
+form label{
+    display: block;
+    margin-top: 20px;
+}
+
+form button{
+    margin-top: 15px;
+}
+
